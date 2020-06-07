@@ -1,7 +1,6 @@
 from flask import Flask, request, render_template, session, flash
 from flask_pymongo import PyMongo
 from flask import redirect
-from flask_session import Session
 
 # Initializing
 app = Flask(__name__)
