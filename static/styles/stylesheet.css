@@ -1,0 +1,143 @@
+body{
+  background-color: rgb(255, 255, 0);
+}
+section{
+  background-color: rgb(255, 220, 0);
+  border-style: solid;
+  font-size: 150%;
+}
+h1{
+  text-align:center;
+  background-color: rgb(255, 255, 255);
+  font-family: Corbel, Arial;
+  font-weight: 900;
+}
+form{
+  padding-bottom: 10px;
+}
+h2{
+text-align: center;
+  font-family: Corbel, Arial;
+  font-weight: 900;
+}
+button{
+  font-family: Corbel, Arial;
+  font-weight: 900;
+  font-size: 100%;
+}
+input, label{
+  font-size: 100%;
+  font-family: Corbel, Arial;
+  font-weight: 900;
+  margin-bottom: 10px;
+
+}
+/*for the $ symbol before property value*/
+.pValue{
+  margin-left: 0%;
+}
+.p_Value{
+  margin-left: 5%;
+  font-family: Corbel, Arial;
+  font-weight: 900;
+}
+/*---*/
+input[type=radio]{
+  margin-left: 20%;
+}
+.center_x{
+  display: block;
+  text-align: center;
+  padding-top:5px;;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+.center_y{
+  display: block;
+  padding-top:5px;;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+section{
+  display: block;
+}
+/*@media screen and (max-width: 1020px){
+  .center_x{
+    margin-left:10%;
+  }
+}*/
+/*@media (max-width: 700px){
+  body{
+    background-color: rgb(255, 220, 0);
+    border-style: solid;
+    font-size: 200%;
+  }
+  .center_x{
+    margin-left: 35%;
+  }
+}*/
+a {
+  text-decoration: none;
+  font-size: 80%;
+  font-family: Corbel, Arial;
+  font-weight: 900;
+  border-style: solid;
+  border-width: thin;
+  background-color: rgb(255, 255, 255);
+  padding: 5px;
+  color: rgb(0, 0, 0);
+}
+caption, table, th, td {
+  border: 1px solid black;
+  text-align: center;
+  margin: 3px;
+}
+article {
+  display: block;
+  background-color: rgb(255, 200, 0);
+  border-style: solid;
+  font-size: 150%;
+}
+.table{
+  padding-left: 10%;
+  padding-right: 10%;
+}
+@media screen and (min-width: 1291px){
+  section{
+    display: inline-block;
+    width: 48%;
+    float: left;
+  }
+  article {
+    /*display: inline-block;*/
+    width: 48%;
+    float: right;
+  }
+  body{
+    padding-left: 10%;
+    padding-right: 10%;
+  }
+  /* .table{
+    padding-left: 10%;
+    padding-right: 10%;
+  } */
+}
+/*@media (max-width: 600px){
+  section{
+    display: block;
+    float: left;
+  }
+  article {
+    display: block;
+  }
+}*/
+.section{
+  width: 100%;
+}
+.center_z{
+  margin-left: 40%;
+  margin-right:40%;
+}
+.href{
+  padding:30px;
+}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Monopoly-Login</title>
+    <!-- <link rel="stylesheet" href="static/styles/stylesheet.css"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+    <style media="screen">
+      body{
+        border:solid black;
+        border-width: medium;
+        border-radius:10px;
+      }
+      .dollar::after{
+        content: " ($)";
+      }
+      .odd{
+        background-color:#B1A296;
+      }
+      .even{
+        background-color:#7395AE;
+      }
+      div {
+        border:solid black;
+        border-width: thin;
+        border-radius:5px;
+        padding:5px;
+      }
+      caption{
+        caption-side: top;
+      }
+    </style>
+  </head>
+  <body class="container">
+    <header>
+      <h1 class="text-center">Monopoly Game Accountancy</h1>
+    </header>
+    <section class = "col pb-3">
+      <h2 class="text-center">Welcome! Hello, World!</h2>
+      <details open>
+        <summary class="text-left">Login here: </summary>
+        <form class="" action="{{ url_for('login') }}" method="post">
+          <div class="center_x">
+            <label for="">Email: </label>
+            <input type="email" name="email" value="" id="email"><br>
+            <label for="name">Name: </label>
+            <input type="text" id="name" name="name" value=""><br>
+            <label for="date">Date of Game: </label>
+            <input type="date" id="date1" name="date" value=""><br>
+  <!--          <button type="submit" name="submit">Submit</button>-->
+            <input role="button" class="btn btn-primary btn-md" type="submit" name="submit" value="Submit">
+            <button type="reset" class="btn btn-warning btn-md" name="reset">Reset</button>
+            <a href="/prop" role="button" class="btn btn-secondary btn-md">Admin Login</a>
+          </div>
+        </form>
+      </details>
+      <!-- <details close>
+        <summary>Already a user? Sign in here: </summary>
+        <form class="" action="index.html" method="post">
+          <label for="date">Date of Game: </label>
+          <input type="date" id="date2" name="date" value=""><br>
+          <label for="userName"></label>
+          <select class="" id="userName" name="userName">
+            <option value=""></option>
+          </select>
+        </form>
+      </details> -->
+    </section>
+    <script type="text/javascript">
+      document.getElementById('date1').valueAsDate = new Date();
+      document.getElementById('date2').valueAsDate = new Date();
+      // email = document.getElementsById('email').value
+      //   if (email == ) {
+      //
+      //   }
+    </script>
+  </body>
+</html>

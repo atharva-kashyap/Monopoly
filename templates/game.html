@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Monopoly</title>
+    <!-- <link rel="stylesheet" href="static/styles/stylesheet_monopoly.css"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+</head>
+  </head>
+  <style media="screen">
+    body{
+      border:solid black;
+      border-width: medium;
+      border-radius:10px;
+    }
+    /* .dollar::after{
+      content: " ($)";
+    } */
+    .odd{
+      background-color:#B1A296;
+      border-radius: 20px;
+      margin-top: 20px;
+    }
+    .even{
+      background-color:#7395AE;
+      border-radius: 20px;
+      margin-top: 20px;
+    }
+    /* div {
+      border:solid black;
+      border-width: thin;
+      border-radius:5px;
+      padding:5px;
+    } */
+    caption{
+      caption-side: top;
+    }
+    #left1, #left2, #left3 {
+      display: inline-block;
+      width: 48%;
+      float:left;
+    }
+    #right1, #right2, #right3, #right4{
+      display:inline-block;
+      width:48%;
+      float:right;
+    }
+    .lock1, .lock2{
+      display:block;
+    }
+    @media only screen and (max-width: 600px){
+      .container{
+        margin:0;
+      }
+    }
+
+  </style>
+  <body class=" ">
+    <h1>{{ user }}</h1>
+    <h2>{{ date }}</h2>
+    <!-- {% for message in get_flashed_messages() %}
+    {{ message }}
+    {% endfor %} -->
+   <header>
+     <h1 class="text-center">Monopoly-Keep your records</h1>
+   </header>
+   <section class="col pb-3">
+     <!-- <p id="task">PLAYER</p> -->
+     <form action="{{ url_for('playGame') }}" method="post" class="">
+        <!-- <label for="action">Choose an action:</label>
+        <select id="action">
+          <option value="buy">Buy</option>
+          <option value="sell" selected>Sell</option>
+          <option value="penalty">Penalty</option>
+          <option value="gift">Gift</option>
+          <option value="rentPaid">Rent Paid</option>
+          <option value="rentRec">Rent Received</option>
+          <option value="reverse">Reverse</option>
+        </select> -->
+      <!-- <div class="row"> -->
+      <div class="lock1">
+      <div class="odd" id="left1">
+        <div class="input-group pt-3 col" id="buy">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="buy_1">Buy</label>
+          </div>
+          <select class="custom-select" id="buy_1" name="buy_1">
+            <option value=""></option>
+            {% for h in result_prop %}
+            <option value="{{h["pName"]}}">{{h["pName"]}}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="input-group col" id="buy">
+          <div class="input-group-prepend">
+            <label  class="dollar" for="buy_1_value">
+          </div>
+          <div class="input-group pt-3 mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">($)</span>
+            </div>
+            <input type="number" id="buy_1_value" name="buy_1_value" value="">
+          </div></label>
+        </div>
+      </div>
+      <div class="even" id="right1">
+        <div class="input-group pt-3 col" id="sell">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="sell_1">Sell</label>
+          </div>
+          <select class="custom-select" id="sell_1" name="sell_1">
+            <option value=""></option>
+            {% for m in result_prop2 %}
+            <option value="{{m["pName"]}}">{{m["pName"]}}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="input-group col" id="sell">
+          <label  class="dollar" for="sell_1_value">
+          <div class="input-group pt-3 mb-2">
+            <div class="input-group-prepend">
+              <span class="input-group-text">($)</span>
+            </div>
+            <input type="number" id="sell_1_value" name="sell_1_value">
+          </div></label>
+        </div>
+      </div>
+      <!-- </div> -->
+      <!-- <div class="row"> -->
+      <div class="odd" id="right2">
+        <div class="input-group col" id="penalty">
+        <label class="dollar" for="penalty_1">
+        <div class="input-group pt-3 mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Penalty ($)</span>
+          </div>
+          <input type="number" id="penalty_1" name="penalty_1" value="Penalty">
+        </div></label>
+        </div>
+      </div>
+      <div class="even" id="left2">
+        <div class="input-group col" id="gift">
+          <label class="dollar" for="gift_1">
+          <div class="input-group pt-3 mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Gift ($)</span>
+            </div>
+            <input type="number" id="gift_1" name="gift_1" value="">
+          </div></label>
+        </div>
+      </div>
+      <!-- </div> -->
+      <div class="odd" id="left3">
+      <div class="input-group pt-2 mb-3 col" id="rentPaid">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="whom">To whom?</label>
+        </div>
+        <select class="custom-select" id="whom" name="whom_p">
+          <option value=""></option>
+          {% for i in result_to %}
+          <option value="{{i["name"]}}">{{i["name"]}}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="input-group col" id="rentPaid">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="rentP">Rent Paid</label>
+        </div>
+        <select class="custom-select" id="rentP" name="rentP">
+          <option value=""></option>
+          {% for l in result_prop3 %}
+          <option value="{{l["pName"]}}">{{l["pName"]}}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="input-group col" id="rentPaid">
+        <label class="dollar" for="amt1">
+          <div class="input-group pt-3 mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Amount Paid($)</span>
+            </div>
+            <input type="number" name="amt1" id="amt1" value="">
+          </div>
+        </label>
+      </div>
+    </div>
+    <div class="even" id="right3">
+      <div class="input-group pt-2 mb-3 col" id="whom">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="whom_r">From whom?</label>
+        </div>
+        <select class="custom-select" id="whom_r" name="whom_r">
+          <option value=""></option>
+          {% for j in result_from %}
+          <option value="{{j["name"]}}">{{j["name"]}}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="input-group col" id="rentRec">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="rentR">Rent Received</label>
+        </div>
+        <select class="custom-select" id="rentR" name="rentR">
+          <option value=""></option>
+          {% for n in result_prop4 %}
+          <option value="{{n["pName"]}}">{{n["pName"]}}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="input-group col">
+        <label class="dollar" for="amt2">
+        <div class="input-group pt-3 mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Amount Paid($)</span>
+          </div>
+          <input type="number" name="amt2" id="amt2" value="">
+          </div>
+        </label>
+      </div>
+    </div>
+    <div class="even" id="right4">
+      <div class="input-group col" id="reverse">
+        <label for="reverse">
+        <div class="input-group pt-3 mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Reverse($)</span>
+          </div>
+          <input type="number" name="reverse" value="">
+        </div>
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="lock2">
+    <button type="submit" onclick="task()" name="button" class="btn btn-lg btn-primary">Submit</button>
+    <a role="button" class="btn btn-secondary btn-lg" href="/logout">End Game</a>
+  </div>
+
+      </form>
+   </section>
+
+   <article class="col">
+     <div class="table-responsive">
+       <table class="table table-sm table-striped table-hover table-bordered">
+         <caption>Game Summary</caption>
+         <thead class="thead-dark">
+           <tr>
+             <th>Buy</th>
+             <th>Bought Value</th>
+             <th>Sell</th>
+             <th>Sold Value</th>
+             <th>Penalty</th>
+             <th>Gift</th>
+             <th>Property for which Rent paid</th>
+             <th>Rent Paid ($)</th>
+             <th>Property for which Rent received</th>
+             <th>Rent Received ($)</th>
+             <th>Reversed Transaction</th>
+           </tr>
+         </thead>
+         <tbody>
+           {% for game in result %}
+           {% if game["user"]==user and game["date"]==date %}
+           <tr>
+             {% for k in game %}
+             {% if k == "buy_1" %}
+             <td>{{game[k]}}</td>
+             {% endif %}
+             {% endfor %}
+
+             {% for k in game %}
+             {% if k == "buy_1_value" %}
+             <td>{{game[k]}}</td>
+             {% endif %}
+             {% endfor %}
+
+             {% for k in game %}
+             {% if k == "sell_1" %}
+             <td>{{game[k]}}</td>
+             {% endif %}
+             {% endfor %}
+
+             {% for k in game %}
+             {% if k == "sell_1_value" %}
+             <td>{{ game[k] }}</td>
+             {% endif %}
+             {% endfor %}
+
+             {% for k in game %}
+             {% if k == "penalty_1" %}
+             <td>{{game[k]}}</td>
+             {% endif %}
+
+
+             {% if k == "gift_1" %}
+             <td>{{game[k]}}</td>
+             {% endif %}
+
+             {% if k == "rentP" %}
+             <td>{{ game[k] }}</td>
+             {% endif %}
+
+             {% if k == "amt1" %}
+             <td>{{game[k]}}</td>
+             {% endif %}
+
+             {% if k == "rentR" %}
+             <td>{{game[k]}}</td>
+             {% endif %}
+
+             {% if k == "amt2" %}
+             <td>{{game[k]}}</td>
+             {% endif %}
+
+             {% if k == "reverse" %}
+             <td>{{game[k]}}</td>
+             {% endif %}
+             {% endfor %}
+           </tr>
+           {% endif %}
+           {% endfor %}
+           <tr>
+             <td>1</td>
+             <td>2</td>
+             <td>1</td>
+             <td>2</td>
+             <td>1</td>
+             <td>2</td>
+             <td>1</td>
+             <td>2</td>
+             <td>1</td>
+             <td>2</td>
+             <td>1</td>
+           </tr>
+         </tbody>
+
+       </table>
+     </div>
+   </article>
+
+
+   <!-- <script type="text/javascript">
+     function endGame(){
+       alert("Are you sure you want to end your game?")
+     }
+
+   function disappear(){
+     if(dropdownbox)
+   }
+
+   function task() {
+    var task = document.getElementById("action");
+    var result = task.options[task.selectedIndex].text;
+    document.getElementById("task").innerHTML = result;
+    if (result == "Buy") {
+      document.getElementById("sell").style.display = "none";
+      document.getElementById("penalty").style.display = "none";
+      document.getElementById("gift").style.display = "none";
+      document.getElementById("rentPaid").style.display = "none";
+      document.getElementById("rentRec").style.display = "none";
+      document.getElementById("reverse").style.display = "none";
+    }
+   }
+   </script> -->
+  </body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Sum</title>
+  </head>
+  <body>
+    <table id="table">
+      <thead>
+        <tr>
+          <th>column1</th>
+          <th>column2</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>122</td>
+          <td>123</td>
+        </tr>
+        <tr>
+          <td>122</td>
+          <td>123</td>
+        </tr>
+        <tr>
+          <td>122</td>
+          <td>123</td>
+        </tr>
+        <tr>
+          <td>122</td>
+          <td>123</td>
+        </tr>
+        <!-- <tr>
+          <td id="td1"></td>
+          <td id="td2"></td>
+        </tr> -->
+      </tbody>
+      <table>
+        <tr>
+          <th></th>
+          <th>column1</th>
+          <th>column2</th>
+        </tr>
+        <tr>
+          <td>Totals</td>
+          <td id="td1"></td>
+          <td id="td2"></td>
+        </tr>
+      </table>
+    </table>
+    <script type="text/javascript">
+      var table = document.getElementById("table"), sumVal = 0;
+      for(var i = 1; i < table.rows.length; i++){
+        sumVal_0 = sumVal + parse Int(table.rows[i].cells[0].innerHTML);
+        sumVal_1 = sumVal + parse Int(table.rows[i].cells[1].innerHTML);
+      }
+      document.getElementById("td1").innerHTML = sumVal_0;
+      document.getElementById("td2").innerHTML = sumVal_1;
+    </script>
+  </body>
+</html>
