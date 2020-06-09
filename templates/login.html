@@ -21,8 +21,8 @@
         background-color:#7395AE;
       }
       div {
-        border:solid black;
-        border-width: thin;
+        /* border:solid black; */
+        /* border-width: thin; */
         border-radius:5px;
         padding:5px;
       }
@@ -31,15 +31,15 @@
       }
     </style>
   </head>
-  <body class="container">
+  <body class="container-md">
     <header>
       <h1 class="text-center">Monopoly Game Accountancy</h1>
     </header>
     <section class = "col pb-3">
       <h2 class="text-center">Welcome! Hello, World!</h2>
       <details open>
-        <summary class="text-left">Login here: </summary>
-        <form class="" action="{{ url_for('login') }}" method="post">
+        <summary class="text-center">Login here: </summary>
+        <form class="text-center" action="{{ url_for('login') }}" method="post">
           <div class="center_x">
             <label for="">Email: </label>
             <input type="email" name="email" value="" id="email"><br>

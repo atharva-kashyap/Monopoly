@@ -5,6 +5,8 @@
     <title>Sum</title>
   </head>
   <body>
+    <p id="td1">hh</p>
+    <p id="td2">gg</p>
     <table id="table">
       <thead>
         <tr>
@@ -34,6 +36,7 @@
           <td id="td2"></td>
         </tr> -->
       </tbody>
+      </table>
       <table>
         <tr>
           <th></th>
@@ -42,19 +45,19 @@
         </tr>
         <tr>
           <td>Totals</td>
-          <td id="td1"></td>
-          <td id="td2"></td>
+          <td></td>
+          <td></td>
         </tr>
       </table>
-    </table>
+
     <script type="text/javascript">
-      var table = document.getElementById("table"), sumVal = 0;
-      for(var i = 1; i < table.rows.length; i++){
-        sumVal_0 = sumVal + parse Int(table.rows[i].cells[0].innerHTML);
-        sumVal_1 = sumVal + parse Int(table.rows[i].cells[1].innerHTML);
-      }
-      document.getElementById("td1").innerHTML = sumVal_0;
-      document.getElementById("td2").innerHTML = sumVal_1;
+        var table = document.getElementById("table"), sumVal = 0;
+        for(var i = 1; i < table.rows.length; i++){
+          sumVal_0 = sumVal + parse Int(table.rows[i].cells[0].innerHTML);
+          sumVal_1 = sumVal + parse Int(table.rows[i].cells[1].innerHTML);
+        }
+        document.getElementById("td1").innerHTML = sumVal_0;
+        document.getElementById("td2").innerHTML = sumVal_1;
     </script>
   </body>
 </html>

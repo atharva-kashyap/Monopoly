@@ -62,9 +62,9 @@ def playGame():
             date = session["date"]
             result_prop = mongo.db.property.find({})
             result_prop2 = mongo.db.property.find({})
-            result_to = mongo.db.user.find({})
+            result_to = mongo.db.user.find({"date":date})
             result_prop3 = mongo.db.property.find({})
-            result_from = mongo.db.user.find({})
+            result_from = mongo.db.user.find({"date":date})
             result_prop4 = mongo.db.property.find({})
             result = mongo.db.game.find({})
             # buy_value = mongo.db.game.find({})
@@ -91,16 +91,30 @@ def playGame():
             mongo.db.game.insert_one({"user":user, "date":date, "buy_1":buy, "buy_1_value":buy_value, "sell_1":sell, "sell_1_value":sell_value, "penalty_1":penalty, "gift_1":gift, "whom_p":whom_p, "rentP":rentPaid, "amt1":amt1, "whom_r":whom_r, "rentR":rentRec, "amt2":amt2, "reverse":reverse})
             return redirect("/game")
 
-@app.route("/logout", methods = ['GET'])
+@app.route("/logout", methods = ['GET', 'POST'])
 def logout():
-    session.pop("loggedin", None)
-    print("logoutedddd")
-    flash("User off")
-    return redirect("/summary")
+    if request.method == 'GET':
+        session.pop("loggedin", None)
+        print("logoutedddd")
+        flash("User off")
+        return redirect("/summary")
+    else:
+        print("posted")
+        total = request.args["total"]
+        user = request.args["user11"]
+        date = request.args["date11"]
+        mongo.db.user.update_one({"date":date, "email":user}, {"$set":{"total":total}})
+        print(mongo.db.user.find({}))
+        return redirect("/summary")
 
 @app.route("/summary", methods = ['GET'])
 def viewSummary():
-    return render_template("summary.html")
+    if "user" in session and "date" in session:
+        date = session["date"]
+        result = mongo.db.user.find({"date":date})
+        for a in result:
+            print(a)
+        return render_template("summary.html",result=result)
 
 # run
 if __name__ == "__main__":
