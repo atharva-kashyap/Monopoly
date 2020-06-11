@@ -1,6 +1,10 @@
-total = document.getElementById("total").value;
-document.getElementById("netWorth").innerHTML = total;
+// total = document.getElementById("total").value;
+// document.getElementById("netWorth").innerHTML = total;
 
+// function entry(){
+//   total = document.getElementById("total").value;
+//   document.getElementById("entry").value = total;
+// }
 
 function finishTable(){
   var totalColumn1 = tableColumnTotal("sumTable",1);
@@ -26,6 +30,7 @@ function finishTable(){
   totalColumn7Elem.innerHTML = totalColumn7;
   var sum = 1500 - totalColumn1 + totalColumn2 - totalColumn3 + totalColumn4 - totalColumn5 + totalColumn6 + totalColumn7
   document.getElementById("total").innerHTML = sum;
+  document.getElementById("total2").innerHTML = sum;
   return;
  }
 function tableColumnTotal(thisTable,colNumber){
@@ -47,4 +52,18 @@ function tableColumnTotal(thisTable,colNumber){
     result += thisNumber;
   }
   return result;
+}
+
+function displayScore(){
+  var totalColumn1 = tableColumnTotal("sumTable",1);
+  var totalColumn2 = tableColumnTotal("sumTable",3);
+  var totalColumn3 = tableColumnTotal("sumTable",4);
+  var totalColumn4 = tableColumnTotal("sumTable",5);
+  var totalColumn5 = tableColumnTotal("sumTable",7);
+  var totalColumn6 = tableColumnTotal("sumTable",9);
+  var totalColumn7 = tableColumnTotal("sumTable",10);
+  var sum = 1500 - totalColumn1 + totalColumn2 - totalColumn3 + totalColumn4 - totalColumn5 + totalColumn6 + totalColumn7
+  document.getElementById("alert").style.display = "block";
+  document.getElementById("entry").style.display = "block";
+  document.getElementById("section").style.display = "none";
 }

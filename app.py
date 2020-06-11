@@ -29,6 +29,8 @@ def login():
                 session["user"] = user
                 session["date"] = date
                 return redirect("/game")
+        # I dont know what is going on below, but this is the only way it works. If you indent the else, then the name will keep re-registering (eachtime you login)
+        # Example: If tundra has logged in once (with same email, name, and date) and logs in again, it is adding to the database, which should not happen.
         else:
             mongo.db.user.insert_one({"name": name, "date": date, "email": user})
             session["user"] = user
@@ -91,21 +93,20 @@ def playGame():
             mongo.db.game.insert_one({"user":user, "date":date, "buy_1":buy, "buy_1_value":buy_value, "sell_1":sell, "sell_1_value":sell_value, "penalty_1":penalty, "gift_1":gift, "whom_p":whom_p, "rentP":rentPaid, "amt1":amt1, "whom_r":whom_r, "rentR":rentRec, "amt2":amt2, "reverse":reverse})
             return redirect("/game")
 
-@app.route("/logout", methods = ['GET', 'POST'])
+@app.route("/logout", methods = ['POST'])
 def logout():
-    if request.method == 'GET':
+    if "user" in session and "date" in session:
         session.pop("loggedin", None)
         print("logoutedddd")
-        flash("User off")
-        return redirect("/summary")
-    else:
-        print("posted")
-        total = request.args["total"]
-        user = request.args["user11"]
-        date = request.args["date11"]
-        mongo.db.user.update_one({"date":date, "email":user}, {"$set":{"total":total}})
-        print(mongo.db.user.find({}))
-        return redirect("/summary")
+        # total = request.form["total"]
+        # print("hello1")
+        # user = request.form["user11"]
+        # print("hello2")
+        # date = request.args.get["date11"]
+        # print("hello3")
+        # mongo.db.user.update_one({"date":date, "email":user}, {"$set":{"total":total}})
+        # print(mongo.db.user.find({}))
+        return redirect("/")
 
 @app.route("/summary", methods = ['GET'])
 def viewSummary():

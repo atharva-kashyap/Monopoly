@@ -59,13 +59,44 @@
         margin:0;
       }
     }
+    #alert, #entry{
+      display:none;
+    }
+    .total{
+      display: block;
+      border-style:solid;
+      border-radius: 20px;
+      margin-left: 30%;
+      margin-right: 30%;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+    /* .endButton{
+      margin-left: 50%;
+      margin-right: 50%;
+    } */
   </style>
   <body onload="finishTable();" class="">
     <header>
       <h1 class="text-center">Monopoly-Keep your records</h1>
-      <p class="pl-4">You are logged on as <strong id="user11">{{ user }}</strong> and today's date is: <strong id="date11">{{ date }}</strong></p>
+      <p class="pl-4">You are logged on as <strong name="user11">{{ user }}</strong> and today's date is: <strong name="date11">{{ date }}</strong></p>
     </header>
-    <section class="col pb-3">
+    <form class="" action="/logout" method="post">
+      <!-- <h1 name="user11">{{ user }}</h1>
+      <h1>{{ date }}</h1> -->
+      <!-- <input type="number" name="entry" id="entry" value=""> -->
+      <!-- <p onclick="entry();">Click</p> -->
+      <div class="alert alert-primary mx-5 mt-2 text-center" id="alert" role="alert">
+         Your total balance ($): <strong><h1 id="total2"></h1></strong>
+         <h5>Compare your results with other players!!</h3>
+      </div>
+      <button type="submit" class="btn btn-danger btn-lg ml-4" id="entry" name="entry">End Game</button>
+    </form>
+    <section id="section" class="col pb-3">
+      <button type="button" class="btn btn-warning btn-lg endButton ml-2" onclick="displayScore();" name="button">End Game</button>
+      <div class="text-center total bg-info">
+        Your current balance ($)<h1 id='total' name='total'></h1>
+      </div>
       <form action="{{ url_for('playGame') }}" method="post" class="">
         <div class="lock1">
           <div class="odd" id="left1">
@@ -324,10 +355,8 @@
             </tr>
          </tbody>
        </table>
-       <h1 id="total"></h1>
-       <form class="" action="/logout" method="get">
-         <button type="button" class="btn btn-secondary btn-lg" name="button">End Game</button>
-       </form>
+
+
      </div>
     </article>
    <script src="static/external.js"></script>
